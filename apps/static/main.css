@@ -1,0 +1,85 @@
+.container{
+    background-color: white;/*لون الخلفية */
+    margin:auto;/*الحدود */
+    text-align: center;/*مكان الكلام في الوسط*/
+}
+
+.section1{
+   background-color: lightgreen;/*لون الخلفية */
+   padding: 20px;/* حجم الخلفية */
+}
+.section2{
+    background-color:gray;/*لون الخلفية */
+    padding: 20px;/* حجم الخلفية */
+
+ }
+ .section3{
+    background-color:black;/*لون الخلفية */
+    padding: 20px;/* حجم الخلفية */
+
+ }
+
+
+/*link styling*/
+a :visited{
+ color: blue;/*حجم الخط */
+}
+.section1 a:hover {
+    color:red;
+    text-decoration: underline;
+}
+
+.section2 a:hover {
+    color:yellow;
+    text-decoration: underline;
+}
+
+.section3 a:hover {
+    color:white;
+    text-decoration: underline;
+}
+
+h1{
+  background-color: bisque;
+  color: green;
+  text-align: left;/* جهة الخط */
+
+}
+
+h2{
+background-color: cadetblue;
+color: white;
+text-align: left;
+}
+
+.fruit-table{
+ width: 20%;
+ margin: 20% auto;
+ font-size: 1em;
+ font-family: Times New Roman;
+ text-align: center ; /* موقع الخط */ 
+}
+
+.fruit-table,.fruit-table th ,.fruit-table td {
+    border:1px solid black;
+}
+/*///////////////////////////////*/
+.camel-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-size: 1em;
+    font-family: Times New Roman;
+    text-align: center;
+}
+.camel-table .table-image{
+width: auto;
+height: auto;
+display: block;
+margin: 0 auto;
+}
+
+.camel-table,.camel-table th ,.camel-table td {
+    border:1px solid black;
+}
+
