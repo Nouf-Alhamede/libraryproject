@@ -38,10 +38,23 @@
 {% endblock stylesheets %}
 
 {% block content %}
+<h1>Task5</h1>
+<table>
+<tr>
+    <th> count of all the book</th>
+    <th> total the price</th>
+    <th> avrage price</th>
+    <th> Min price</th>
+    <th> max price</th>
+</tr>
+<tr>
+    <td> {{quary.count}} </td>
+    <td> {{quary.total_price}} </td>
+    <td> {{quary.average_price}} </td>
+    <td> {{quary.min_price}} </td>
+    <td> {{quary.max_price}} </td> 
+</tr>
+</table>
 
-{% for book in books %}
-    ID: {{book.edition}}, Title: {{book.title}}, author: {{book.author}}
-     <hr> 
-{% endfor %}
-
+<hr>
 {% endblock content %}

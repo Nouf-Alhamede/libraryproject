@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} BookList Page {% endblock title %}
+{% block title %} Task 7 Page {% endblock title %}
 
 {% block stylesheets %}
     <style>
@@ -38,10 +38,16 @@
 {% endblock stylesheets %}
 
 {% block content %}
-
-{% for book in books %}
-    ID: {{book.edition}}, Title: {{book.title}}, author: {{book.author}}
-     <hr> 
-{% endfor %}
-
+<table>
+    <tr>
+        <th>City</th>
+        <th>number of Student </th>
+    </tr>
+    {% for city in cities%}
+    <tr>
+        <td>{{city.city}}</td>
+        <td>{{city.student_count }}</td>
+    </tr>
+    {%endfor%}
+</table>
 {% endblock content %}
