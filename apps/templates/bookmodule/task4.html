@@ -1,0 +1,61 @@
+{% extends "Layouts/base.html" %}
+
+{% block title %} Task 4 - Departments with Many Students {% endblock title %}
+
+{% block stylesheets %}
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            font-size: 1em;
+            font-family: "Times New Roman", Times, serif;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th {
+            background-color: lightblue;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 8px;
+        }
+
+        caption {
+            font-size: 1.2em;
+            margin: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <table>
+        <caption>Departments with More Than 2 Students</caption>
+        <thead>
+            <tr>
+                <th>Department Name</th>
+                <th>Number of Students</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dept in departments %}
+                <tr>
+                    <td>{{ dept.name }}</td>
+                    <td>{{ dept.student_count }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2">No departments have more than two students.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
