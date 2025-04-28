@@ -1,0 +1,64 @@
+{% extends "Layouts/base.html" %}
+
+{% load static %}
+
+{% block title %} task1 lab9_listbook {% endblock title %}
+
+{% block stylesheets %}
+    <style>
+        table {
+            width: 20%;
+            margin: 20px auto;
+            font-size: 1em;
+            font-family: Times New Roman;
+            text-align: center;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th {
+            background-color: pink;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 8px;
+        }
+
+        caption {
+            font-size: 1.2em;
+            margin: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+<a href="{% url 'add_book' %}">Add new book</a> <!-- هنا بس اضيف كتاب مع يحتاج حدد  هنا اضيف شكل عام id -->
+<!-- هنا لما يضغط يروح لي url ثمن من url الي تشير الى دالت add الموجود في viwe ثمن دالة viwe تسوي لطلب لي صفحة حقت add -->
+<table>
+    <tr>
+        <th>title</th>
+        <th>author </th>
+        <th>Edit</th>
+        <th>Delete </th>
+    </tr>
+    {% for book in books%}
+    <tr>
+        <td>{{book.title}}</td>
+        <td>{{book.author }}</td>
+        <td><a href="{% url 'edit_book' book.id%}">edit this book</a></td><!-- هنا لازم  هنا عدل بشكل خاص book.id  احدد ل لانه اغير  على نفس كتاب الي يحتوي  -->
+        <td><a href="{% url 'delete_book' book.id%}">delete this book</a></td><!--هنا لازم احدد لاني راح احذف على الكتاب الي يحتوي على نفس Id   -->
+    </tr>
+    {%endfor%}
+</table>
+
+{% endblock content %}
+
+
+
+   

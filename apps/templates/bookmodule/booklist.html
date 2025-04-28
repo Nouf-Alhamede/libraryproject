@@ -39,8 +39,10 @@
 
 {% block content %}
 
-{% for book in books %}
-    ID: {{book.edition}}, Title: {{book.title}}, author: {{book.author}}
+{% for book in books %} <!--books هو الي حددنه في صفحة viwe   وا كلهم task3 في فنكشن الي كتبناه {'books'='books'}-->
+<!-- هنا معناتها اكتب اي ابوجكت مثل book or bookssاي ابجكت ثمن in class الي هو وين ابغها يوصل لي اي جدول الي هو book الموجود في الموديل لازم نفس السبلينق  -->
+     Title: {{book.title}}, author: {{book.author}},Prices:{{book.price}},edition:{{book.edition}}
+     <!--هنا كتبنا الابجكت و يوشير الى الابوجكت الي موجودات في كلاس book كلهم عشان يعرضونها لي -->
      <hr> 
 {% endfor %}
 

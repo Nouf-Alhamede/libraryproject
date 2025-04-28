@@ -1,0 +1,60 @@
+{% extends "Layouts/base.html" %}
+
+{% load static %}
+
+{% block title %} task1 add_student{% endblock title %}
+
+{% block stylesheets %}
+    <style>
+        table {
+            width: 20%;
+            margin: 20px auto;
+            font-size: 1em;
+            font-family: Times New Roman;
+            text-align: center;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th {
+            background-color: pink;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 8px;
+        }
+
+        caption {
+            font-size: 1.2em;
+            margin: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+<a href="{% url 'add_profile' %}">Add new photo</a> <!-- هنا بس اضيف كتاب مع يحتاج حدد  هنا اضيف شكل عام id -->
+<!-- هنا لما يضغط يروح لي url ثمن من url الي تشير الى دالت add الموجود في viwe ثمن دالة viwe تسوي لطلب لي صفحة حقت add -->
+<table>
+    <tr>
+        <th>name</th>
+        <th>photo </th>
+        <th>edit</th>
+        <th>delete </th>
+    </tr>
+    {% for profile in Profiles%}<!-- هذا المتغير الي سويناه في viwe -->
+    <tr>
+        <td>{{profile.name}}</td>
+        <td><img src="{{profile.photo.url }}" width="100"/></td><!-- (خذ لي رابط الصورة (url) modil المخزنة داخل  photo الموجود في الكائن profile) كذا اضفت صورة هنا لازم بالبداية profile نفس المتغير الي اخترناه بعدها photo-->
+        
+        <td><a href="{% url 'edit_profile' profile.id%}">edit </a></td><!-- هنا لازم  هنا عدل بشكل خاص book.id  احدد ل لانه اغير  على نفس كتاب الي يحتوي  -->
+        <td><a href="{% url 'delete_profile' profile.id%}">delete </a></td><!--هنا لازم احدد لاني راح احذف على الكتاب الي يحتوي على نفس Id   -->
+    </tr>
+    {%endfor%}
+</table>
+
+{% endblock content %}

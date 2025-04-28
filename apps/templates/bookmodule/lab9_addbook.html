@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Task 7 Page {% endblock title %}
+{% block title %} task2 lab9_addbook{% endblock title %}
 
 {% block stylesheets %}
     <style>
@@ -36,17 +36,12 @@
         }
     </style>
 {% endblock stylesheets %}
+
 {% block content %}
-<table>
-    <tr>
-        <th>course</th>
-        <th>number of Student </th>
-    </tr>
-    {% for title in course %}<!-- هنا متغير يشير الي الفنكشن الي موجود في viwe التي تشير الي كلاس كورس  لازم نفس السبلينق -->
-    <tr>
-        <td>{{title.title}}</td>
-        <td>{{title.student_count }}</td>
-    </tr>
-    {%endfor%}
-</table>
+<form method = "POST">
+     {% csrf_token %}
+     <input name="title" placeholder="Title" required><br>
+     <input name="author" placeholder="author" required><br>
+<button type = "submit">Add</button>
+</form>
 {% endblock content %}

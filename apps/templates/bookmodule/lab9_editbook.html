@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Task 7 Page {% endblock title %}
+{% block title %} task3 lab9_listbook {% endblock title %}
 
 {% block stylesheets %}
     <style>
@@ -36,17 +36,12 @@
         }
     </style>
 {% endblock stylesheets %}
+
 {% block content %}
-<table>
-    <tr>
-        <th>course</th>
-        <th>number of Student </th>
-    </tr>
-    {% for title in course %}<!-- هنا متغير يشير الي الفنكشن الي موجود في viwe التي تشير الي كلاس كورس  لازم نفس السبلينق -->
-    <tr>
-        <td>{{title.title}}</td>
-        <td>{{title.student_count }}</td>
-    </tr>
-    {%endfor%}
-</table>
+<form method = "POST">
+     {% csrf_token %}
+     <input name="title" value="{{book.title}}" required><br><!--ليش كتبنا value لانه قيمة اساسة موجود ما احتاج اضيفها -->
+     <input name="author" value="{{book.author}}" required><br><!-- لانه القيمة اخذنها من متغر book -->
+<button type = "submit">Update</button>
+</form>
 {% endblock content %}

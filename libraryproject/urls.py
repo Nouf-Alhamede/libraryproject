@@ -16,6 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('books/', include("apps.bookmodule.urls")), #include urls.py of bookmodule app
@@ -24,3 +27,5 @@ urlpatterns = [
 
 ]
 
+if settings.DEBUG:#هذي تسمح لي دانقو ان يضيف media هذي الخدمة تعرضها لي 
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
