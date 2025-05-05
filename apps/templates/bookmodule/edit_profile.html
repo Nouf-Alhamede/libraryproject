@@ -38,6 +38,15 @@
 {% endblock stylesheets %}
 
 {% block content %}
+
+{% if messages %} <!-- معناتها اذا كان في اي رسالة تطلعي كل الرسال فقط في add -->
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <form method = "POST" enctype="multipart/form-data"><!-- انا اكتب كذا عشان يعرف اني ارسل صورة -->
      {% csrf_token %}
     {{form.as_p}}

@@ -37,8 +37,21 @@
     </style>
 {% endblock stylesheets %}
 {% block content %}
+{% if user.is_authenticated%}
 <a href="{% url 'add_profile' %}">Add new photo</a> <!-- هنا بس اضيف كتاب مع يحتاج حدد  هنا اضيف شكل عام id -->
 <!-- هنا لما يضغط يروح لي url ثمن من url الي تشير الى دالت add الموجود في viwe ثمن دالة viwe تسوي لطلب لي صفحة حقت add -->
+{% else %}
+<p> you need to be loggen in to add or edit student </p>
+{% endif%}
+<br/>
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <table>
     <tr>
         <th>name</th>
@@ -51,10 +64,20 @@
         <td>{{profile.name}}</td>
         <td><img src="{{profile.photo.url }}" width="100"/></td><!-- (خذ لي رابط الصورة (url) modil المخزنة داخل  photo الموجود في الكائن profile) كذا اضفت صورة هنا لازم بالبداية profile نفس المتغير الي اخترناه بعدها photo-->
         
-        <td><a href="{% url 'edit_profile' profile.id%}">edit </a></td><!-- هنا لازم  هنا عدل بشكل خاص book.id  احدد ل لانه اغير  على نفس كتاب الي يحتوي  -->
-        <td><a href="{% url 'delete_profile' profile.id%}">delete </a></td><!--هنا لازم احدد لاني راح احذف على الكتاب الي يحتوي على نفس Id   -->
+        <td>{% if user.is_authenticated%}<a href="{% url 'edit_profile' profile.id%}">edit </a>{% else %}
+            <p> you need to be loggen in to add or edit student </p>
+            {% endif%}</td><!-- هنا لازم  هنا عدل بشكل خاص book.id  احدد ل لانه اغير  على نفس كتاب الي يحتوي  -->
+        <td>{% if user.is_authenticated%}<a href="{% url 'delete_profile' profile.id%}">delete </a>{% else %}
+            <p> you need to be loggen in to add or edit student </p>
+            {% endif%}</td><!--هنا لازم احدد لاني راح احذف على الكتاب الي يحتوي على نفس Id   -->
     </tr>
     {%endfor%}
 </table>
+
+{% if user.is_authenticated%}<!-- اذا كان اليوزر موثق اسمح له انه يضيف طالب -->
+  <a href="{% url 'logout' %}">Logout </a> 
+{% endif %}
+
+<a href="{% url 'register' %}">here to regester  </a> 
 
 {% endblock content %}

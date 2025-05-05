@@ -38,6 +38,15 @@
 {% endblock stylesheets %}
 
 {% block content %}
+
+{% if messages %} <!-- معناتها اذا كان في اي رسالة تطلعي كل الرسال فقط في add -->
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <form method = "POST">
      {% csrf_token %}
      {{ form.as_p }}<!-- بس هذا الي اكتبة با استعمال form ما يحتاج اعرف او اكتب شي جدا بسيط -->

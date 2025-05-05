@@ -7,6 +7,7 @@ from .models import Book, Address, Student,Card,Department,Course , Address2, St
 from django.db.models import Count, Min, Max, Sum, Avg #هذي مهمه لما استعمل aggregatoin عشان تحسب لي اصغر واكبر ومتوسط وغيرها مهمه 
 
 from .forms import BookForm,StudentForm,StudentForm2 ,ProfileForm
+from django.contrib.auth.decorators import login_required# هذي لاب 12 حق login and rigaster  هذي اعطاء صلاحيات احطها على الاب الاخير يعطي صلاحيات فيها 
 
 def index(request):
     name = request.GET.get("name") or "world!"  
@@ -217,6 +218,7 @@ def list_student(request):
     Students = Student.objects.all()#عشان يعرض لي كل الكتوب 
     return render(request, 'bookmodule/list_student.html',{'Students':Students})
 
+@login_required # هنا  ما ابغى يضيف الا لما يسجل دخول 
 def add_student(request):# اضيف كتاب 
     if request.method =="POST":# اذا دخل اليوز معلومات سو طلب اضغط 
         form = StudentForm(request.POST)# الطلب الي جاء راح يكون داخل المتغير راح ياخذ بس الطلب form
@@ -227,6 +229,7 @@ def add_student(request):# اضيف كتاب
         form =StudentForm()
     return render(request,'bookmodule/add_student.html',{'form':form})#راح ارسله لي الصفحة form 
 
+@login_required # هنا  ما ابغى يعدل الا لما يسجل دخول 
 def edit_student(request, id ):#اعدل كتاب على شي محدد فا لازم احط id 
     Students = get_object_or_404(Student,id=id) #هنا كانه يخذ كتاب معين ويعدل عليه طيب ليش get_object لان راح ياخذها من نفس الصفحة او 404 الخطاء 
     # هنا فقط عدل كاني قلت له شفت المتغر student سويت له get من نفس id حق الكتاب 
@@ -239,6 +242,7 @@ def edit_student(request, id ):#اعدل كتاب على شي محدد فا لا
         form =StudentForm(instance = Students) #عشان ياخذ نفس الكتاب 
     return render(request,'bookmodule/edit_student.html',{'form':form})#اضيف متغير book
 
+@login_required
 def delete_student(request,id):#احذف كتاب 
    Students = get_object_or_404(Student,id=id)#نفس شرح edit 
    Students.delete()#اسوي حذف فقط 
@@ -248,6 +252,7 @@ def list_student2(request):
     Students = Student2.objects.all()#عشان يعرض لي كلالطلاب 
     return render(request, 'bookmodule/list_student2.html',{'Students':Students})
 
+@login_required
 def add_student2(request):# اضيف كتاب 
     if request.method =="POST":# اذا دخل اليوز معلومات سو طلب اضغط 
         form = StudentForm2(request.POST)# الطلب الي جاء راح يكون داخل المتغير راح ياخذ بس الطلب form
@@ -258,6 +263,7 @@ def add_student2(request):# اضيف كتاب
         form =StudentForm2()
     return render(request,'bookmodule/add_student2.html',{'form':form})#راح ارسله لي الصفحة form 
 
+@login_required
 def edit_student2(request, id ):#اعدل كتاب على شي محدد فا لازم احط id 
     Students = get_object_or_404(Student2,id=id) #هنا كانه يخذ كتاب معين ويعدل عليه طيب ليش get_object لان راح ياخذها من نفس الصفحة او 404 الخطاء 
     # هنا فقط عدل كاني قلت له شفت المتغر student سويت له get من نفس id حق الكتاب 
@@ -270,6 +276,7 @@ def edit_student2(request, id ):#اعدل كتاب على شي محدد فا ل�
         form =StudentForm2(instance = Students) #عشان ياخذ نفس الكتاب 
     return render(request,'bookmodule/edit_student2.html',{'form':form})#اضيف متغير book
 
+@login_required
 def delete_student2(request,id):#احذف كتاب 
    Students = get_object_or_404(Student2,id=id)#نفس شرح edit 
    Students.delete()#اسوي حذف فقط 
@@ -280,6 +287,7 @@ def list_profiles(request):
     Profiles = Profile.objects.all()#عشان يعرض لي كلالطلاب 
     return render(request, 'bookmodule/list_profile.html',{'Profiles':Profiles})
 
+@login_required
 def add_profile(request):# اضيف كتاب 
     if request.method =="POST":# اذا دخل اليوز معلومات سو طلب اضغط 
         form = ProfileForm(request.POST, request.FILES)#الشي المختلف في اضافة الصور هي فقط اضافة request.FILES اضفنا طلب ملف 
@@ -290,6 +298,7 @@ def add_profile(request):# اضيف كتاب
         form =ProfileForm()
     return render(request,'bookmodule/add_profile.html',{'form':form})#راح ارسله لي الصفحة form 
 
+@login_required
 def edit_profile(request, id ):#اعدل كتاب على شي محدد فا لازم احط id 
     Profiles = get_object_or_404(Profile,id=id) #هنا كانه يخذ كتاب معين ويعدل عليه طيب ليش get_object لان راح ياخذها من نفس الصفحة او 404 الخطاء 
     # هنا فقط عدل كاني قلت له شفت المتغر student سويت له get من نفس id حق الكتاب 
@@ -302,6 +311,7 @@ def edit_profile(request, id ):#اعدل كتاب على شي محدد فا لا
         form =ProfileForm(instance = Profiles) #عشان ياخذ نفس الكتاب 
     return render(request,'bookmodule/edit_profile.html',{'form':form})#اضيف متغير book
 
+@login_required
 def delete_profile(request,id):#احذف كتاب 
    profiles = get_object_or_404(Profile,id=id)#نفس شرح edit 
    profiles.delete()#اسوي حذف فقط 

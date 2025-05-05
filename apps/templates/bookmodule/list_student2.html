@@ -38,8 +38,22 @@
 {% endblock stylesheets %}
 
 {% block content %}
+{% if user.is_authenticated%}
 <a href="{% url 'add_student2' %}">Add new student</a> <!-- هنا بس اضيف كتاب مع يحتاج حدد  هنا اضيف شكل عام id -->
 <!-- هنا لما يضغط يروح لي url ثمن من url الي تشير الى دالت add الموجود في viwe ثمن دالة viwe تسوي لطلب لي صفحة حقت add -->
+<!-- هنا لما يضغط يروح لي url ثمن من url الي تشير الى دالت add الموجود في viwe ثمن دالة viwe تسوي لطلب لي صفحة حقت add -->
+{% else %}
+<p> you need to be loggen in to add or edit student </p>
+{% endif%}
+<br/>
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <table>
     <tr>
         <th>name</th>
@@ -57,11 +71,26 @@
                 {{ add.city }}<!--يطبع اسم المدينة مهمه!!--> 
             {% endfor %}
         </td>
-        <td><a href="{% url 'edit_student2' std.id%}">edit this student</a></td><!-- هنا لازم  هنا عدل بشكل خاص book.id  احدد ل لانه اغير  على نفس كتاب الي يحتوي  -->
-        <td><a href="{% url 'delete_student2' std.id%}">delete this student</a></td><!--هنا لازم احدد لاني راح احذف على الكتاب الي يحتوي على نفس Id   -->
+        <td>
+            {% if user.is_authenticated%}
+            <a href="{% url 'edit_student2' std.id%}">edit this student</a>
+            {% else %}
+            <p> you need to be loggen in to add or edit student </p>
+            {% endif%}
+        </td><!-- هنا لازم  هنا عدل بشكل خاص book.id  احدد ل لانه اغير  على نفس كتاب الي يحتوي  -->
+        <td>
+            {% if user.is_authenticated%}
+            <a href="{% url 'delete_student2' std.id%}">delete this student</a>
+            {% else %}
+               <p> you need to be loggen in to add or edit student </p>
+            {% endif%}
+        </td><!--هنا لازم احدد لاني راح احذف على الكتاب الي يحتوي على نفس Id   -->
     </tr>
     {%endfor%}
 </table>
+{% if user.is_authenticated%}<!-- اذا كان اليوزر موثق اسمح له انه يضيف طالب -->
+  <a href="{% url 'logout' %}">Logout </a> 
+{% endif %}
 
 {% endblock content %}
 

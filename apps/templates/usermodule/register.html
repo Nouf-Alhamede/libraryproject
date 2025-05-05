@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} task1 add_profile{% endblock title %}
+{% block title %} lab 11 register page {% endblock title %}
 
 {% block stylesheets %}
     <style>
@@ -38,17 +38,13 @@
 {% endblock stylesheets %}
 
 {% block content %}
-{% if messages %} <!-- معناتها اذا كان في اي رسالة تطلعي كل الرسال فقط في  -->
-    <ul>
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-{% endif %} 
-
-<form method = "POST" enctype="multipart/form-data"><!-- انا اكتب كذا عشان يعرف اني ارسل صورة -->
-     {% csrf_token %}
-    {{form.as_p}}
-<button type = "submit">Add</button>
+<form method = "POST">
+    {% csrf_token %}
+    {{ form.as_p}}
+<button type = "submit">Register</button>
 </form>
+<a href="{% url 'login' %}">Already have an account? login</a>
+
+
+
 {% endblock content %}
